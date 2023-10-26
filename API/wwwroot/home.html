@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="home.js"></script>
+</head>
+<body>
+    <h1>welcome to Home!!!!</h1>
+
+
+
+
+
+
+    <div dir="rtl">
+        <h3>הרשמה</h3>
+        <br />
+
+        <label>שם משתמש</label>
+        <br />
+        <input id="userName" onchange="checkLength()" />
+        <br />
+
+        <label>סיסמא</label>  <br />
+        <input onchange="checkPassword()" id="password" />
+        <br />
+        <br />
+        <meter max="4" id="password-strength-meter"></meter>
+        <h8 id="password-strength-text"></h8>
+        <br />
+        <label>שם פרטי</label>  <br />
+        <input id="firstName" />
+        <br />
+
+        <label>שם משפחה</label><br />
+        <input id="lastName" />
+        <br />
+        <button id="buttonRegister" onclick="register()"> הירשם</button>
+    </div>
+
+    <br />
+
+
+
+
+
+
+
+    <div dir="rtl">
+        <h3>התחברות</h3>
+        <br />
+
+        <label>שם משתמש</label>  <br />
+        <input id="userName2" />
+        <br />
+
+        <label>סיסמא</label>  <br />
+        <input id="password2"  />
+        <br />
+        <button id="login" onclick="login()" > התחבר</button>
+    </div>
+
+</body>
+
+</html>
