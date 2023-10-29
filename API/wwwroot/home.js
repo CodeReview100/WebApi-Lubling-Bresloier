@@ -87,9 +87,6 @@ const checkPassword = async () => {
     }
 }
 
-
-
-
 const login = async () => {
     try {
         var userName2 = document.getElementById("userName2").value

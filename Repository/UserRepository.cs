@@ -3,10 +3,10 @@ using System.Text.Json;
 
 namespace Repository
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
-        string path = "M:/WebApi/ApiEx01/API/wwwroot/users.txt";
-     public User addUser(User user)
+        string path = "M://rut//rut bres/ApiEx01/API/wwwroot/users.txt";
+        public User addUser(User user)
         {
             int numberOfUsers = System.IO.File.ReadLines(path).Count();
             user.UserId = numberOfUsers + 1;
@@ -20,9 +20,6 @@ namespace Repository
             return user;
 
         }
-
-
-
         public User getUser(string userName, string password)
         {
 

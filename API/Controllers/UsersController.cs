@@ -17,13 +17,20 @@ namespace API.Controllers
    
     public class UsersController : ControllerBase
     {
-      
+        IUserService _userService;
+
+        public UsersController(IUserService userService)
+        {
+            _userService = userService;
+        }
+
+
         // GET api/<ValuesController>
         [HttpGet]
         public ActionResult Get(
             [FromQuery] string userName="", [FromQuery] string password="")
         {
-           User userAgsist = userService.getUser(userName, password);
+           User userAgsist = _userService.getUser(userName, password);
             if(userAgsist ==null)
             {
                 return NoContent();
@@ -33,14 +40,13 @@ namespace API.Controllers
         }
 
 
-        UserService userService = new UserService();
 
         // POST api/<ValuesController>
         [HttpPost]
         public IActionResult Post([FromBody] User user)
         {
 
-            User newUser = userService.addUser(user);
+            User newUser = _userService.addUser(user);
             if (newUser == null)
             {
                 return BadRequest();
@@ -70,7 +76,7 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] User userToUpdate)
         {
-            User newUser = userService.editUser(userToUpdate);
+            User newUser = _userService.editUser(userToUpdate);
 
         }
 
