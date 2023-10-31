@@ -13,37 +13,37 @@ namespace Service
 
         //UserRepository userRepository = new UserRepository();
 
-        public User addUser(User user)
+        public async Task<User> addUser(User user)
         {
-            if (checkPassword(user.Password) < 2)
+            if  (await checkPassword( user.Password) < 2)
             {
-                return null;
+                return  null;
             }
-            return _userRepository.addUser(user);
+            return await _userRepository.addUser(user);
         }
 
 
 
-        public User getUser(string userName, string password)
+        public async Task<User> getUser(string userName, string password)
         {
-            return _userRepository.getUser(userName, password);
+            return await _userRepository.getUser(userName, password);
         }
 
 
-        public User editUser(User userToUpdate)
+        public async Task<User> editUser(User userToUpdate)
         {
 
-            return _userRepository.editUser(userToUpdate);
+            return await _userRepository.editUser(userToUpdate);
         }
 
-        private int checkPassword(string password)
+        private async Task<int> checkPassword(string password)
         {
             if (password != "")
             {
                 var result = Zxcvbn.Core.EvaluatePassword(password);
-                return result.Score;
+                return  result.Score;
             }
-            return -1;
+            return  -1;
         }
 
     }

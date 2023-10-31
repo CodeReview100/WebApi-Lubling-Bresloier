@@ -6,7 +6,7 @@ namespace Repository
     public class UserRepository : IUserRepository
     {
         string path = "M://rut//rut bres/ApiEx01/API/wwwroot/users.txt";
-        public User addUser(User user)
+        public async Task<User> addUser(User user)
         {
             int numberOfUsers = System.IO.File.ReadLines(path).Count();
             user.UserId = numberOfUsers + 1;
@@ -20,7 +20,7 @@ namespace Repository
             return user;
 
         }
-        public User getUser(string userName, string password)
+        public async Task<User> getUser(string userName, string password)
         {
 
 
@@ -37,7 +37,7 @@ namespace Repository
             return null;
         }
 
-        public User editUser(User userToUpdate)
+        public async Task<User> editUser(User userToUpdate)
         {
 
             string textToReplace = string.Empty;

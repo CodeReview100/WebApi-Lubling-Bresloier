@@ -27,15 +27,16 @@ namespace API.Controllers
 
         // GET api/<ValuesController>
         [HttpGet]
-        public ActionResult Get(
+        public async Task<ActionResult<User>> Get(
             [FromQuery] string userName="", [FromQuery] string password="")
         {
-           User userAgsist = _userService.getUser(userName, password);
+           User userAgsist = await _userService.getUser(userName, password);
+
             if(userAgsist ==null)
             {
-                return NoContent();
+                return  NotFound();
             }
-            return Ok(userAgsist);
+            return  Ok(userAgsist);
 
         }
 
@@ -43,15 +44,15 @@ namespace API.Controllers
 
         // POST api/<ValuesController>
         [HttpPost]
-        public IActionResult Post([FromBody] User user)
+        public async Task<IActionResult> Post([FromBody] User user)
         {
 
-            User newUser = _userService.addUser(user);
+            User newUser =await _userService.addUser(user);
             if (newUser == null)
             {
-                return BadRequest();
+                return  NoContent();
             }
-            return CreatedAtAction(nameof(Get), new { id = newUser.UserId }, newUser);
+            return  CreatedAtAction(nameof(Get), new { id = newUser.UserId }, newUser);
 
         }
 
@@ -59,14 +60,14 @@ namespace API.Controllers
 
 
         [HttpPost("check")]
-        public int Check([FromBody] string password)
+        public async Task<int> Check([FromBody] string password)
         {
             if (password != "")
             {
                 var result = Zxcvbn.Core.EvaluatePassword(password);
-                return result.Score;
+                return  result.Score;
             }
-            return -1;
+            return  -1;
 
         }
 
@@ -74,9 +75,16 @@ namespace API.Controllers
 
         // PUT api/<ValuesController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] User userToUpdate)
+        public async Task<ActionResult> Put(int id, [FromBody] User userToUpdate)
         {
-            User newUser = _userService.editUser(userToUpdate);
+           
+            User newUser = await _userService.editUser(userToUpdate);
+            if (newUser != null)
+            {
+                return  Ok(newUser);
+            }
+
+            return  NoContent();
 
         }
 

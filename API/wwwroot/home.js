@@ -1,20 +1,14 @@
-﻿
-
-
-var IdCount = 100;
+﻿var IdCount = 100;
 
 const register = async () => {
-
-
     try {
         var userName = document.getElementById("userName").value
-
         var password = document.getElementById("password").value
         var firstName = document.getElementById("firstName").value
         var lastName = document.getElementById("lastName").value
         var User = { userName, password, firstName, lastName }
 
-
+/* if()*/
         const res = await fetch('api/users', {
             method: 'POST',
             headers: {
@@ -25,15 +19,14 @@ const register = async () => {
         });
 
         const dataPost = await res.json();
-        alert(dataPost)
+        alert(dataPost.userName+" your regisre:)")
     }
     catch (er) {
-        alert(er)
+       alert(er )
     }
 
 
 }
-
 
 const checkLength = () => {
     var userName = document.getElementById("userName").value
@@ -44,6 +37,14 @@ const checkLength = () => {
 
 var users;
 
+
+
+const checkPasswordLevel=(password)=>{
+
+
+
+
+}
 
 
 const checkPassword = async () => {
@@ -72,14 +73,8 @@ const checkPassword = async () => {
 
 
     if (res <= 2)
-        /* alert("your password is weak!! try again")*/
         meter.value = res;
-
-    // Update the password strength meter
     meter.value = res;
-
-    // Update the text indicator
- 
     if (password !== "") {
         text.innerHTML = "Strength: " + strength[res];
     } else {
@@ -87,11 +82,14 @@ const checkPassword = async () => {
     }
 }
 
+
+
+
 const login = async () => {
     try {
-        var userName2 = document.getElementById("userName2").value
-        var password2 = document.getElementById("password2").value
-        var url = 'api/users' + "?" + "userName=" + userName2 + "&password=" + password2;
+        var userNameLogin = document.getElementById("userNameLogin").value
+        var passwordLogin = document.getElementById("passwordLogin").value
+        var url = 'api/users' + "?" + "userName=" + userNameLogin + "&password=" + passwordLogin;
         const res = await fetch(url,);
         console.log(res)
         if (!res.ok) {
@@ -106,7 +104,7 @@ const login = async () => {
         }
     }
     catch (er) {
-        alert(er.message)
+        alert(er.message+"DFGHJKYYRFK")
     }
    
  

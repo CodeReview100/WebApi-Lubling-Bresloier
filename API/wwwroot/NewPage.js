@@ -1,34 +1,30 @@
-﻿
-const user = sessionStorage.getItem("user")
+﻿const user = sessionStorage.getItem("user")
 const jsonUser = JSON.parse(user)
-
 
 const loadPage = () => {
     const jsonUser = JSON.parse(user)
     welcome.innerHTML = `hello to ${jsonUser.userName}  welcome to home page:)!!!`
-    const userName3 = document.getElementById("userName3")
-    userName3.value = jsonUser.userName
+    const userNameUpdate = document.getElementById("userNameUpdate")
+    userNameUpdate.value = jsonUser.userName
 
-    const password3 = document.getElementById("password3")
-    password3.value = jsonUser.password
+    const passwordUpdate = document.getElementById("passwordUpdate")
+    passwordUpdate.value = jsonUser.password
 
-    const firstName3 = document.getElementById("firstName3")
-    firstName3.value = jsonUser.firstName
+    const firstNameUpdate = document.getElementById("firstNameUpdate")
+    firstNameUpdate.value = jsonUser.firstName
 
-    const lastName3 = document.getElementById("lastName3")
-    lastName3.value = jsonUser.lastName
+    const lastNameUpdate = document.getElementById("lastNameUpdate")
+    lastNameUpdate.value = jsonUser.lastName
 
 }
-
-
 
 const update = async () => {
     try {
         var userId = jsonUser.userId
-        var userName = document.getElementById("userName3").value
-        var password = document.getElementById("password3").value
-        var firstName = document.getElementById("firstName3").value
-        var lastName = document.getElementById("lastName3").value
+        var userName = document.getElementById("userNameUpdate").value
+        var password = document.getElementById("passwordUpdate").value
+        var firstName = document.getElementById("firstNameUpdate").value
+        var lastName = document.getElementById("lastNameUpdate").value
         var User = { userId, userName, password, firstName, lastName }
         console.log(User)
         var url = 'api/users' + "/" + userId
@@ -40,13 +36,14 @@ const update = async () => {
             body: JSON.stringify(User)
 
         });
-    const dataPost = await res.json();
-    alert("עודכן")
+        const dataPost = await res.json();
+
+        alert(dataPost.userName +"עודכן")
     console.log(dataPost)
     }
 
 catch (er) {
-    alert(er.message)
+    alert(er.message+ "ERORR")
 }
 
 }
