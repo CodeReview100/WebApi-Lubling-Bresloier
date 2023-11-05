@@ -37,12 +37,14 @@ const update = async () => {
 
         });
         const dataPost = await res.json();
-
+        //Check response status!!
+        //updated
         alert(dataPost.userName +"עודכן")
     console.log(dataPost)
     }
 
-catch (er) {
+    catch (er) {
+    //log the error to the console
     alert(er.message+ "ERORR")
 }
 

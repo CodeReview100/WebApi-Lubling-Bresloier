@@ -3,6 +3,8 @@ using System.Text.Json;
 
 namespace Repository
 {
+    //Rename folder name to Repositories
+
     public class UserRepository : IUserRepository
     {
         string path = "M://rut//rut bres/ApiEx01/API/wwwroot/users.txt";

@@ -3,6 +3,8 @@ using Repository;
 
 namespace Service
 {
+    //Rename folder name to Services
+
     public class UserService : IUserService
     {
         public IUserRepository _userRepository;
@@ -29,15 +31,16 @@ namespace Service
             return await _userRepository.getUser(userName, password);
         }
 
-
+        //updateUser (instead of editUser- clean code) 
         public async Task<User> editUser(User userToUpdate)
         {
-
+            //First, you must check the new password'stength! 
             return await _userRepository.editUser(userToUpdate);
         }
 
         private async Task<int> checkPassword(string password)
         {
+            //Call this function from the controller...
             if (password != "")
             {
                 var result = Zxcvbn.Core.EvaluatePassword(password);

@@ -1,12 +1,16 @@
-﻿var IdCount = 100;
+﻿//I recommend to change the project name to webApiShopSite etc.
+
+var IdCount = 100;
 
 const register = async () => {
     try {
+        //Use const
         var userName = document.getElementById("userName").value
         var password = document.getElementById("password").value
         var firstName = document.getElementById("firstName").value
         var lastName = document.getElementById("lastName").value
         var User = { userName, password, firstName, lastName }
+        //const User = { UserName:userName, Password:password, FirstName:firstName, LastName:lastName }, Prefix -UpperCase 
 
 /* if()*/
         const res = await fetch('api/users', {
@@ -19,9 +23,12 @@ const register = async () => {
         });
 
         const dataPost = await res.json();
+        //Check response status code- if response is ok..., if not alert a suitable message...
+        //you register:) 
         alert(dataPost.userName+" your regisre:)")
     }
     catch (er) {
+       //Alerting errors to the user is not recommended, log them to the console.
        alert(er )
     }
 
@@ -29,8 +36,10 @@ const register = async () => {
 }
 
 const checkLength = () => {
+    //const
     var userName = document.getElementById("userName").value
     if (userName.length > 10) {
+        //too
         alert("to long")
     }
 } 
@@ -38,7 +47,7 @@ const checkLength = () => {
 var users;
 
 
-
+//Remove Unnecessary lines
 const checkPasswordLevel=(password)=>{
 
 
@@ -46,7 +55,7 @@ const checkPasswordLevel=(password)=>{
 
 }
 
-
+//variables- const (if possible)
 const checkPassword = async () => {
     var res;
     var strength = {
@@ -68,6 +77,7 @@ const checkPassword = async () => {
             body: JSON.stringify(password)
 
         })
+        //await! instead of .then
         .then(r => r.json())
         .then(data => res = data)
 
@@ -89,11 +99,13 @@ const login = async () => {
     try {
         var userNameLogin = document.getElementById("userNameLogin").value
         var passwordLogin = document.getElementById("passwordLogin").value
+        //use `` for js strings with variables ex:userName=`${userNameLogin}`
         var url = 'api/users' + "?" + "userName=" + userNameLogin + "&password=" + passwordLogin;
         const res = await fetch(url,);
         console.log(res)
         if (!res.ok) {
             throw new Error("eror!!!")
+            //Alert: userName or password incorrect try again....
         }
         else {
             var data = await res.json() 
